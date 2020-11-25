@@ -1,0 +1,129 @@
+.search-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-form__title {
+  width: 608px;
+font-family: 'Roboto Slab', Arial, sans-serif;
+font-style: normal;
+font-weight: normal;
+font-size: 60px;
+line-height: 64px;
+color: #FFFFFF;
+margin: 80px 0 32px 0;
+text-align: left;
+}
+
+.search-form__subtitle {
+  width: 608px;
+font-family: 'Roboto', Arial, sans-serif;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 24px;
+color: #FFFFFF;
+margin: 0 0 64px 0;
+text-align: left;
+}
+
+.search-form__form {
+  border-radius: 50%;
+  border: none;
+}
+
+.search-form__input {
+  border: none;
+  border-radius: 100px;
+  width: 95%;
+  height: 100%;
+  padding: 0 0 0 24px;
+}
+
+.search-form__set {
+  border: none;
+  width: 608px;
+  height: 64px;
+  position: relative;
+  padding: 0;
+}
+
+.search-form__submit-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background-color: #2F71E5;
+  border-radius: 100px;
+  height: 100%;
+  width: 30%;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  color: #FFFFFF;
+  padding: 0;
+  cursor: pointer;
+}
+
+.search-form__submit-button:hover {
+  background: #347EFF;
+}
+
+@media screen and (max-width : 769px) {
+  .search-form__title {
+    font-size: 36px;
+    line-height: 40px;
+    margin: 38px 0 32px 0;
+    width: 399px;
+  }
+
+  .search-form__subtitle {
+    font-size: 18px;
+    line-height: 24px;
+    width: 399px;
+    margin: 0 0 48px 0;
+  }
+
+  .search-form__set {
+    width: 448px;
+    height: 56px;
+  }
+
+  .search-form__input {
+    width: 85%;
+  }
+}
+
+@media screen and (max-width : 500px) {
+  .search-form__title {
+    font-size: 36px;
+    line-height: 40px;
+    margin: 30px 0 16px 0;
+    width: 285px;
+  }
+
+  .search-form__subtitle {
+    font-size: 18px;
+    line-height: 24px;
+    width: 285px;
+    margin: 0 0 122px 0;
+  }
+
+  .search-form__set {
+    width: 288px;
+  }
+
+  .search-form__input {
+    width: 92%;
+  }
+
+  .search-form__submit-button {
+    top: 73px;
+    width: 100%;
+  }
+}

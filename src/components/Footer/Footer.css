@@ -1,0 +1,96 @@
+.footer {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footer__copyright {
+  font-family: 'Roboto', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #B6BCBF;
+  margin-left: 50px;
+  margin-top: 30px;
+  align-self: baseline;
+}
+
+.footer__links_text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footer__links_icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-right: 50px;
+}
+
+.footer__link {
+  font-family: 'Roboto', Arial, sans-serif;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 24px;
+text-align: center;
+color: #1A1B22;
+text-decoration: none;
+margin-left: 30px;
+margin-top: 30px;
+align-self: baseline;
+}
+
+.footer__link_icon {
+  width: 20px;
+  margin-left: 30px;
+  margin-top: 30px;
+  height: 20px;
+}
+
+.footer__link_icon-github {
+  background-image: url(../../images/github.svg);
+}
+
+.footer__link_icon-facebook {
+  background-image: url(../../images/facebook.svg);
+}
+
+@media screen and (max-width : 714px) {
+  .footer {
+    height: 170px;
+    flex-direction: column-reverse;
+  }
+  
+  .footer__copyright {
+    margin-left: 16px;
+    margin-top: 12px;
+  }
+  
+  .footer__links_text {
+    flex-direction: column;
+  }
+
+  .footer__links_icon {
+    margin-right: 16px;
+  }
+  
+  .footer__links {
+    margin-right: 0;
+  }
+  
+  .footer__link {
+  margin-left: 16px;
+  margin-top: 20px;
+  }
+}
