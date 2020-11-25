@@ -3,14 +3,11 @@ import NotFound from '../NotFound/NotFound.js';
 import Preloader from '../Preloader/Preloader.js';
 import NewsCardList from '../NewsCardList/NewsCardList.js';
 
-
 function Main(props) {
-
-
   return (
     <main className="main">
-        <Preloader />
-        <NotFound />
+      <Preloader />
+      <NotFound />
       <div className="card-list">
         <h2 className="card-list__header">Результаты поиска</h2>
         <NewsCardList />

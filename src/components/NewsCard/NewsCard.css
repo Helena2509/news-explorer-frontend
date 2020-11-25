@@ -17,7 +17,7 @@
 .card__text .card__description {
   display: -webkit-box;
   -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;  
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
@@ -29,7 +29,7 @@
   line-height: 24px;
   display: flex;
   align-items: center;
-  color: #B6BCBF;
+  color: #b6bcbf;
   margin: 20px 24px 0;
 }
 
@@ -39,7 +39,7 @@
   font-weight: normal;
   font-size: 26px;
   line-height: 30px;
-  color: #1A1B22;
+  color: #1a1b22;
   margin: 12px 24px 16px;
 }
 
@@ -49,7 +49,7 @@
   font-weight: normal;
   font-size: 16px;
   line-height: 22px;
-  color: #1A1B22;
+  color: #1a1b22;
   margin: 0 24px;
 }
 
@@ -61,7 +61,7 @@
   line-height: 20px;
   letter-spacing: 0.4px;
   text-transform: uppercase;
-  color: #B6BCBF;
+  color: #b6bcbf;
   margin: 18px 24px 0;
 }
 
@@ -91,7 +91,7 @@
   width: 14px;
   height: 19px;
   background-image: url(../../images/marker.svg);
-  border: none; 
+  border: none;
   outline: none;
   cursor: pointer;
   background-color: #ffffff;
@@ -108,7 +108,7 @@
   width: 19px;
   height: 21px;
   background-image: url(../../images/delete.svg);
-  border: none; 
+  border: none;
   outline: none;
   cursor: pointer;
   background-color: #ffffff;
@@ -118,29 +118,29 @@
   position: absolute;
   top: 24px;
   left: 24px;
-  background: #FFFFFF;
-border-radius: 10px;
-width: 88px;
-height: 40px;
+  background: #ffffff;
+  border-radius: 10px;
+  width: 88px;
+  height: 40px;
 }
 
 .card__key_header {
   margin: 9px 0 0;
   font-family: 'Roboto', Arial, sans-serif;
-font-style: normal;
-font-weight: 500;
-font-size: 14px;
-line-height: 24px;
-text-align: center;
-color: #000000;
-text-overflow: ellipsis;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  color: #000000;
+  text-overflow: ellipsis;
 }
 
 .card__delete_rede {
   width: 159px;
   height: 40px;
 
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 10px;
   display: none;
 }
@@ -150,12 +150,12 @@ text-overflow: ellipsis;
   top: 1px;
   left: 10px;
   font-family: 'Roboto', Arial, sans-serif;
-font-style: normal;
-font-weight: 500;
-font-size: 12px;
-line-height: 14px;
-text-align: center;
-color: #000000;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  color: #000000;
 }
 
 .card__marker:hover + .card__delete_rede {
@@ -165,7 +165,7 @@ color: #000000;
   right: 71px;
 }
 
-@media screen and (max-width : 769px) {
+@media screen and (max-width: 769px) {
   .card {
     margin: 8px auto;
     width: 224px;
@@ -175,11 +175,11 @@ color: #000000;
   .card__text .card__description {
     -webkit-line-clamp: 4;
   }
-  
+
   .card__date {
     margin: 16px 16px 0;
   }
-  
+
   .card__title {
     font-size: 22px;
     line-height: 24px;
@@ -189,24 +189,24 @@ color: #000000;
   .card__description {
     margin: 0 16px;
   }
-  
+
   .card__author {
     margin: 12px 16px 0;
   }
-  
+
   .card__img {
     height: 150px;
   }
-  
+
   .card__marker {
     top: 8px;
     right: 8px;
   }
-  
+
   .card__key {
     top: 8px;
     left: 8px;
-    background: #FFFFFF;
+    background: #ffffff;
   }
 
   .card__marker:hover + .card__delete_rede {
@@ -214,7 +214,7 @@ color: #000000;
   }
 }
 
-@media screen and (max-width : 500px) {
+@media screen and (max-width: 500px) {
   .card {
     margin: 8px auto;
     width: 288px;
@@ -224,7 +224,7 @@ color: #000000;
   .card__text .card__description {
     -webkit-line-clamp: 4;
   }
-  
+
   .card__title {
     font-size: 22px;
     line-height: 24px;
@@ -234,23 +234,23 @@ color: #000000;
   .card__description {
     margin: 0 16px;
   }
-  
+
   .card__author {
     margin: 12px 16px 0;
   }
-  
+
   .card__img {
     height: 196px;
   }
-  
+
   .card__marker {
     top: 8px;
     right: 8px;
   }
-  
+
   .card__key {
     top: 8px;
     left: 8px;
-    background: #FFFFFF;
+    background: #ffffff;
   }
 }

@@ -3,7 +3,7 @@
   display: none;
   flex-direction: column;
   justify-content: center;
-  background: #F5F6F7;
+  background: #f5f6f7;
 }
 
 .not-found__img {
@@ -15,23 +15,23 @@
 
 .not-found__title {
   font-family: 'Roboto Slab', Arial, sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 26px;
-line-height: 30px;
-text-align: center;
-margin-top: 24px;
-margin-bottom: 16px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 30px;
+  text-align: center;
+  margin-top: 24px;
+  margin-bottom: 16px;
 }
 
 .not-found__subtitle {
   font-family: 'Roboto', Arial, sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 24px;
-text-align: center;
-color: #B6BCBF;
-width: 356px;
-align-self: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  color: #b6bcbf;
+  width: 356px;
+  align-self: center;
 }

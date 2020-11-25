@@ -1,6 +1,6 @@
 import React from 'react';
 import './Navigation.css';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import NavigationPopup from '../NavigationPopup/NavigationPopup.js';
 
 function Navigation(props) {

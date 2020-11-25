@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.css';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
@@ -11,7 +11,11 @@ function Footer() {
           <Link to="/" className="footer__link">
             Главная
           </Link>
-          <a href="https://praktikum.yandex.ru" className="footer__link" target="_blank">
+          <a
+            href="https://praktikum.yandex.ru"
+            className="footer__link"
+            target="_blank"
+          >
             Яндекс.Практикум
           </a>
         </div>
