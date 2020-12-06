@@ -23,22 +23,19 @@ function NavigationPopup(props) {
         <Link to="/" className="popup_navigation__link">
           Главная
         </Link>
+        {props.loggedIn ?
         <Link to="/saved-news" className="popup_navigation__link">
           Сохранённые статьи
-        </Link>
+        </Link> : <></>}
         <div className="popup_navigation__auth">
-          {location.pathname === '/' ? (
+          {props.loggedIn ? (
+            <p className="popup_navigation__auth_text"  onClick={props.signOut}>{props.name}</p>
+          ) : (
             <p className="popup_navigation__auth_text" onClick={authPopup}>
               Авторизоваться
             </p>
-          ) : (
-            <p className="popup_navigation__auth_text">Грета</p>
           )}
-          {location.pathname === '/' ? (
-            <></>
-          ) : (
-            <div className="navigation__auth_img"></div>
-          )}
+          <div className="navigation__auth_img-white"></div>
         </div>
         <button
           type="button"

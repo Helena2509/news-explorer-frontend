@@ -9,10 +9,21 @@ function Header(props) {
       <div className="header__container">
         <h2 className="header__logo">NewsExplorer</h2>
         <div className="header__navigation">
-          <Navigation onPopup={props.onPopup} />
+          <Navigation
+            onPopup={props.onPopup}
+            loggedIn={props.loggedIn}
+            setLoggedIn={props.setLoggedIn}
+            userData={props.userData}
+            tokenCheck={props.tokenCheck}
+            setSavedArticles={props.setSavedArticles}
+            
+          />
         </div>
       </div>
-      <SearchForm />
+      <SearchForm
+        handleTextSearch={props.handleTextSearch}
+        submitSearch={props.submitSearch}
+      />
     </header>
   );
 }

@@ -1,9 +1,15 @@
 import React from 'react';
 import './Navigation.css';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import NavigationPopup from '../NavigationPopup/NavigationPopup.js';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 function Navigation(props) {
+  const currentUser = React.useContext(CurrentUserContext);
+  const history = useHistory();
+
+  let { name } = props.userData;
+
   const [IsNavigationOpen, setNavigationOpen] = React.useState(false);
 
   function handleIsNavigationOpenClick() {
@@ -12,6 +18,13 @@ function Navigation(props) {
 
   function closeAllPopups() {
     setNavigationOpen(false);
+  }
+
+  function signOut(){
+    localStorage.removeItem('jwt');
+    props.setSavedArticles([]);
+    props.setLoggedIn(false);
+    history.push('/');
   }
 
   const location = useLocation();
@@ -47,19 +60,19 @@ function Navigation(props) {
         <Link to="/" className={navigation}>
           Главная
         </Link>
+        {props.loggedIn ?
         <Link to="/saved-news" className={navigationNews}>
           Сохранённые статьи
-        </Link>
+        </Link> : <></>}
         <div className={navigationAuth}>
-          {location.pathname === '/' ? (
+            {props.loggedIn ? 
+            <p className={navigationText} onClick={signOut}>{`${name}`}</p> :
             <p className={navigationText} onClick={props.onPopup}>
               Авторизоваться
             </p>
-          ) : (
-            <p className={navigationText}>Грета</p>
-          )}
+          }
           {location.pathname === '/' ? (
-            <></>
+            <div className="navigation__auth_img-white"></div>
           ) : (
             <div className="navigation__auth_img"></div>
           )}
@@ -74,6 +87,9 @@ function Navigation(props) {
         onPopup={props.onPopup}
         isOpen={IsNavigationOpen}
         onClose={closeAllPopups}
+        loggedIn={props.loggedIn}
+        name={name}
+        signOut={signOut}
       />
     </>
   );

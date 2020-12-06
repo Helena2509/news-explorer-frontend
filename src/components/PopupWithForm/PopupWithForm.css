@@ -50,6 +50,10 @@
   padding-top: 1px;
 }
 
+.popup__container_register {
+  height: 458px;
+}
+
 .popup__close-button {
   position: absolute;
   top: -40px;
@@ -89,6 +93,10 @@
   outline: none;
   cursor: pointer;
   bottom: -140px;
+}
+
+.form__submit-button_register {
+  bottom: -208px;
 }
 
 .form__submit-button:hover {
@@ -146,6 +154,11 @@
   position: absolute;
   top: 326px;
   left: 131px;
+}
+
+.popup__choice_register {
+  top: 393px;
+    left: 162px;
 }
 
 .popup__choice_link {

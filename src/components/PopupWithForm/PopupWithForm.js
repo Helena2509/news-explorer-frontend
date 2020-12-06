@@ -1,55 +1,26 @@
 import React from 'react';
 import './PopupWithForm.css';
+import { Link, useLocation } from 'react-router-dom';
 
 function PopupWithForm(props) {
   React.useEffect(() => {
     props.closeEscOverlay();
   }, [props.isOpen]);
 
+  const closeAnother = () => {
+    props.onClose();
+    props.openAnotherPopup();
+  }
+
   return (
     <div className={`popup ${props.isOpen ? 'popup_opened' : ''}`}>
-      <div className="popup__container">
+      <div className={`popup__container popup__container_${props.container}`}>
         <h2 className={`popup__heading`}>{props.title}</h2>
-        <form className={`form`} noValidate>
-          <fieldset className="form__set">
-            <label className="form__field">
-              <p className="form__header">Email</p>
-              <input
-                type="text"
-                className="form__input form__input_name"
-                id="name-input"
-                placeholder="Введите почту"
-                required
-                minLength="2"
-                maxLength="40"
-              />
-              <span className="form__input-error" id="name-input-error"></span>
-            </label>
-            <label className="form__field">
-              <p className="form__header">Пароль</p>
-              <input
-                type="text"
-                className="form__input form__input_description form__input_type_bottom"
-                id="description-input"
-                placeholder="Введите пароль"
-                required
-                minLength="2"
-                maxLength="200"
-              />
-              <span
-                className="form__input-error"
-                id="description-input-error"
-              ></span>
-            </label>
-            <button
-              className={`form__submit-button form__submit-button_type_profile`}
-            >
-              Войти
-            </button>
-          </fieldset>
+        <form onSubmit={props.handleSubmit} className={`form form_type_${props.name}`} noValidate>
+        {props.children}
         </form>
-        <p className="popup__choice">
-          или <a className="popup__choice_link">Зарегистрироваться</a>
+        <p className={`popup__choice popup__choice_${props.container}`}>
+  или <Link className="popup__choice_link" onClick={closeAnother}>{props.choice}</Link>
         </p>
         <button
           type="button"

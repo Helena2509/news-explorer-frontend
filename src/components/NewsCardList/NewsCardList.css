@@ -53,6 +53,10 @@
   align-self: center;
 }
 
+.card-list__more_hiden {
+  display: none;
+}
+
 @media screen and (max-width: 769px) {
   .card-list {
     padding: 40px 40px 0 40px;

@@ -1,7 +1,17 @@
 import React from 'react';
 import './SearchForm.css';
 
-function SearchForm() {
+function SearchForm(props) {
+  
+  const [textSearch, setTextSearch] = React.useState(
+    localStorage.textSearch || ''
+  );
+
+  const submitSearch = (e) => {
+    e.preventDefault();
+    props.handleTextSearch(textSearch);
+  }
+
   return (
     <div className="search-form">
       <h1 className="search-form__title">Что творится в мире?</h1>
@@ -9,7 +19,7 @@ function SearchForm() {
         Находите самые свежие статьи на любую тему и сохраняйте в своём личном
         кабинете.
       </h2>
-      <form className="search-form__form">
+      <form className="search-form__form" onSubmit={submitSearch}>
         <fieldset className="search-form__set">
           <label className="search-form__field">
             <input
@@ -20,6 +30,8 @@ function SearchForm() {
               required
               minLength="2"
               maxLength="30"
+              value={textSearch}
+              onChange={(evt) => setTextSearch(evt.target.value)}
             />
             <span
               className="search-form__input-error"

@@ -64,6 +64,13 @@
   margin-right: 10px;
 }
 
+.navigation__auth_img-white {
+  background-image: url(../../images/exit_white.svg);
+  height: 16px;
+  width: 17px;
+  margin-right: 10px;
+}
+
 .navigation__button {
   display: none;
   background-image: url(../../images/menu_white.svg);
@@ -81,7 +88,7 @@
   display: none;
 }
 
-@media screen and (max-width: 659px) {
+@media screen and (max-width: 800px) {
   .navigation__container {
     display: none;
   }
@@ -92,5 +99,13 @@
 
   .navigation__button_black {
     display: block;
+  }
+
+  .navigation__auth_img-white {
+    background-image: url(../../images/exit_white.svg);
+    height: 16px;
+    width: 17px;
+    margin-right: 7px;
+    margin-top: 15px;
   }
 }
