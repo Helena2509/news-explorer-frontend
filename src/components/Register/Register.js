@@ -1,28 +1,29 @@
-import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import * as auth from '../../utils/MainApi';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import useFormWithValidation from '../../utils/validation.js';
 
 const Register = (props) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-
   const history = useHistory();
 
-  const resetForm = () => {
-    setEmail('');
-    setPassword('');
-    setName('');
-  };
+  const {
+    values,
+    handleChange,
+    errors,
+    isValid,
+    resetForm,
+  } = useFormWithValidation();
+
+  const [error, setError] = React.useState('');
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     auth
-      .register(name, email, password)
+      .register(values.name, values.email, values.password)
       .then((res) => {
         if (res.error) {
-          
+          setError(res.error);
         } else {
           history.push('/');
           props.closeAllPopups();
@@ -31,7 +32,7 @@ const Register = (props) => {
       })
       .then(() => resetForm())
       .catch((err) => {
-        console.log(err);
+        setError(err);
       });
   };
 
@@ -39,7 +40,6 @@ const Register = (props) => {
     <section className="register">
       <PopupWithForm
         container={`register`}
-        title={`Регистрация`}
         handleSubmit={handleSubmit}
         choice={`Войти`}
         onClose={props.closeAllPopups}
@@ -52,60 +52,74 @@ const Register = (props) => {
           <label className="form__field">
             <p className="form__header">Email</p>
             <input
-              type="text"
-              className="form__input form__input_name"
-              id="name-input"
+              type="email"
+              className="form__input"
               placeholder="Введите почту"
               required
               minLength="2"
               maxLength="40"
-              value={email}
-              onChange={(evt) => setEmail(evt.target.value)}
+              value={values.email}
+              name="email"
+              onChange={handleChange}
             />
-            <span className="form__input-error" id="name-input-error"></span>
+            <span className="form__input-error" id="name-input-error">
+              {errors.email}
+            </span>
           </label>
           <label className="form__field">
             <p className="form__header">Пароль</p>
             <input
               type="password"
-              className="form__input form__input_description form__input_type_bottom"
-              id="description-input"
+              className="form__input"
               placeholder="Введите пароль"
-              required
               minLength="2"
               maxLength="200"
-              value={password}
-              onChange={(evt) => setPassword(evt.target.value)}
+              value={values.password}
+              onChange={handleChange}
+              name="password"
               required
             />
-            <span
-              className="form__input-error"
-              id="description-input-error"
-            ></span>
+            <span className="form__input-error">{errors.password}</span>
           </label>
           <label className="form__field">
             <p className="form__header">Имя</p>
             <input
               type="text"
-              className="form__input form__input_description form__input_type_bottom"
-              id="description-input"
+              className="form__input"
               placeholder="Введите имя"
               required
               minLength="2"
               maxLength="200"
-              value={name}
-              onChange={(evt) => setName(evt.target.value)}
+              value={values.name}
+              name="name"
+              onChange={handleChange}
             />
-            <span
-              className="form__input-error"
-              id="description-input-error"
-            ></span>
+            <span className="form__input-error" id="description-input-error">
+              {errors.name}
+            </span>
           </label>
-          <button
-            className={`form__submit-button form__submit-button_register`}
-          >
-            Зарегистрироваться
-          </button>
+          {isValid ? (
+            <>
+              {error ? (
+                <span className="form__button-error form__button-error-register">
+                  {error}
+                </span>
+              ) : (
+                <></>
+              )}
+              <button
+                className={`form__submit-button form__submit-button-register form__submit-button_active`}
+              >
+                Зарегистрироваться
+              </button>
+            </>
+          ) : (
+            <button
+              className={`form__submit-button form__submit-button-register`}
+            >
+              Войти
+            </button>
+          )}
         </fieldset>
       </PopupWithForm>
     </section>

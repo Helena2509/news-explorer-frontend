@@ -1,58 +1,28 @@
 import React from 'react';
 import './SavedNewsHeader.css';
-import Navigation from '../Navigation/Navigation.js';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
+import Navigation from '../Navigation/Navigation.js';
+import transformQuantity from '../../utils/transformQuantity';
 
 function SavedNewsHeader(props) {
   const currentUser = React.useContext(CurrentUserContext);
-  let { name } = props.userData;
+  let name = currentUser ? currentUser.name : ``;
+
   const keywordArray = props.savedArticles.map(function (keyword) {
     return keyword.keyword;
   });
 
-  var result = {};
+  let result = {};
   keywordArray.forEach(function (a) {
-    if (result[a] != undefined) ++result[a];
+    if (result[a] !== undefined) ++result[a];
     else result[a] = 1;
   });
 
-  const endingWord = (array) => {
-    const number = (array.length - 2) % 10;
-    if (number == 1) {
-      return `${array.length - 2}-му другому`;
-    }
-    if (number == 2 || 3 || 4) {
-      return `${array.length - 2}-м другим`;
-    }
-    if (number == 5 || 6 || 9 || 0) {
-      return `${array.length - 2}-ти другим`;
-    }
-    if (number == 7 || 8) {
-      return `${array.length - 2}-ми другим`;
-    }
-  };
-
-  const ending = (array) => {
-    const number = endingWord(array);
-    if (array.length == 0) {
-      return ``;
-    }
-    if (array.length == 1) {
-      return `${array[0]}`;
-    }
-    if (array.length == 2) {
-      return `${array[0]} и ${array[1]}`;
-    }
-    if (array.length >= 3) {
-      return `${array[0]}, ${array[1]} и ${number}`;
-    }
-  };
-
   let uniqueArray = keywordArray.filter(
-    (elem, index, array) => array.indexOf(elem) == index
+    (elem, index, array) => array.indexOf(elem) === index
   );
 
-  const span = ending(uniqueArray);
+  const span = transformQuantity(uniqueArray);
 
   return (
     <header className="header header_saved-news">
@@ -65,9 +35,9 @@ function SavedNewsHeader(props) {
             onPopup={props.onPopup}
             loggedIn={props.loggedIn}
             setLoggedIn={props.setLoggedIn}
-            userData={props.userData}
             tokenCheck={props.tokenCheck}
             setSavedArticles={props.setSavedArticles}
+            signOut={props.signOut}
           />
         </div>
       </div>

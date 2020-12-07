@@ -10,28 +10,29 @@ function Main(props) {
 
   React.useEffect(() => {
     if (props.foundArticles.length === 0) {
-      console.log(props.foundArticles);
       setFoundNothing(true);
-      //if ()
     } else {
-      console.log(props.foundArticles);
       setFoundNothing(false);
     }
   }, [props.foundArticles]);
-
 
   return (
     <main className="main">
       {props.isLoading ? (
         <Preloader isLoading={props.isLoading} />
-      ) :  foundNothing ? (
-        <NotFound foundNothing={foundNothing} 
-        title={`Ничего не найдено`}
-        subtitle={`К сожалению, по вашему запросу ничего не найдено.`} />
-      ) : props.error ? <NotFound error={props.error} 
-      title={`Во время запроса произошла ошибка.`}
-      subtitle={`Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз`} />
-      : (
+      ) : foundNothing ? (
+        <NotFound
+          foundNothing={foundNothing}
+          title={`Ничего не найдено`}
+          subtitle={`К сожалению, по вашему запросу ничего не найдено.`}
+        />
+      ) : props.error ? (
+        <NotFound
+          error={props.error}
+          title={`Во время запроса произошла ошибка.`}
+          subtitle={`Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз`}
+        />
+      ) : (
         <div className="card-list">
           <h2 className="card-list__header">Результаты поиска</h2>
           <NewsCardList

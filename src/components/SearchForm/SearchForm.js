@@ -2,15 +2,24 @@ import React from 'react';
 import './SearchForm.css';
 
 function SearchForm(props) {
-  
   const [textSearch, setTextSearch] = React.useState(
     localStorage.textSearch || ''
   );
 
+  const [isEmpty, setIsEmpty] = React.useState(false);
+
+  React.useEffect(() => {
+    if (textSearch === '') {
+      setIsEmpty(true);
+    } else {
+      setIsEmpty(false);
+    }
+  }, [textSearch]);
+
   const submitSearch = (e) => {
     e.preventDefault();
     props.handleTextSearch(textSearch);
-  }
+  };
 
   return (
     <div className="search-form">
@@ -33,10 +42,13 @@ function SearchForm(props) {
               value={textSearch}
               onChange={(evt) => setTextSearch(evt.target.value)}
             />
-            <span
-              className="search-form__input-error"
-              id="search-form-input-error"
-            ></span>
+            {isEmpty ? (
+              <span className="search-form__input-error">
+                Нужно ввести ключевое слово
+              </span>
+            ) : (
+              <></>
+            )}
           </label>
           <button className={`search-form__submit-button`}>Искать</button>
         </fieldset>

@@ -13,10 +13,9 @@ function Header(props) {
             onPopup={props.onPopup}
             loggedIn={props.loggedIn}
             setLoggedIn={props.setLoggedIn}
-            userData={props.userData}
             tokenCheck={props.tokenCheck}
             setSavedArticles={props.setSavedArticles}
-            
+            signOut={props.signOut}
           />
         </div>
       </div>

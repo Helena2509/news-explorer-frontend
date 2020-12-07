@@ -95,6 +95,11 @@
   bottom: -140px;
 }
 
+.form__submit-button_active {
+  background: #2f71e5;
+  color: white;
+}
+
 .form__submit-button_register {
   bottom: -208px;
 }
@@ -130,7 +135,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: 18px 0;
+  margin: 4px 0 35px;
 }
 
 .form__header {
@@ -158,12 +163,40 @@
 
 .popup__choice_register {
   top: 393px;
-    left: 162px;
+  left: 162px;
 }
 
 .popup__choice_link {
   color: #2f71e5;
   cursor: pointer;
+}
+
+.form__input-error {
+  font-size: 12px;
+  color: red;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  transition: 0.3s;
+}
+
+.form__submit-button-register {
+  bottom: -217px;
+}
+
+.form__button-error {
+  font-size: 14px;
+  color: red;
+  position: absolute;
+  top: 150px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.form__button-error-register {
+  top: 230px;
 }
 
 @media screen and (max-width: 558px) {

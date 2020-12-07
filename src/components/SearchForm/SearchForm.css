@@ -59,7 +59,7 @@
   border-radius: 100px;
   height: 100%;
   width: 30%;
-  font-family: Roboto;
+  font-family: 'Roboto', Arial, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -72,6 +72,12 @@
 
 .search-form__submit-button:hover {
   background: #347eff;
+}
+
+.search-form__input-error {
+  color: red;
+  text-shadow: 1px 1px 1px rgb(77, 75, 75);
+  margin: 0 24px;
 }
 
 @media screen and (max-width: 769px) {

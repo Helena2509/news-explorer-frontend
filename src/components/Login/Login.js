@@ -1,33 +1,36 @@
-import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import * as auth from '../../utils/MainApi';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import useFormWithValidation from '../../utils/validation.js';
 
 const Login = (props) => {
+  const {
+    values,
+    handleChange,
+    errors,
+    isValid,
+    resetForm,
+  } = useFormWithValidation();
+
+  const [error, setError] = React.useState('');
+
   React.useEffect(() => {
     resetForm();
   }, [props.loggedIn]);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   const history = useHistory();
-
-  const resetForm = () => {
-    setEmail('');
-    setPassword('');
-  };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    if (!email || !password) {
+    if (!values.email || !values.password) {
       return;
     }
     auth
-      .authorize(password, email)
+      .authorize(values.password, values.email)
       .then((data) => {
         if (data.message) {
-
+          setError(data.message);
         } else {
           props.tokenCheck();
           history.push('/');
@@ -36,7 +39,7 @@ const Login = (props) => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        setError(err);
       });
   };
 
@@ -50,49 +53,56 @@ const Login = (props) => {
         onClose={props.closeAllPopups}
         isOpen={props.isPopupLoginOpen}
         closeEscOverlay={props.closeEscOverlay}
-       openAnotherPopup={props.isPopupRegisterOpen}
+        openAnotherPopup={props.isPopupRegisterOpen}
         title={props.title}
       >
         <fieldset className="form__set">
           <label className="form__field">
             <p className="form__header">Email</p>
             <input
-              type="text"
-              className="form__input form__input_name"
-              id="name-input"
+              type="email"
+              className="form__input"
               placeholder="Введите почту"
               required
-              minLength="2"
+              minLength="6"
               maxLength="40"
-              value={email}
-              onChange={(evt) => setEmail(evt.target.value)}
+              value={values.email}
+              name="email"
+              onChange={handleChange}
             />
-            <span className="form__input-error" id="name-input-error"></span>
+            <span className="form__input-error">{errors.email}</span>
           </label>
           <label className="form__field">
             <p className="form__header">Пароль</p>
             <input
               type="password"
-              className="form__input form__input_description form__input_type_bottom"
-              id="description-input"
+              className="form__input"
               placeholder="Введите пароль"
               required
-              minLength="2"
+              minLength="6"
               maxLength="200"
-              value={password}
-              onChange={(evt) => setPassword(evt.target.value)}
-              required
+              value={values.password}
+              name="password"
+              onChange={handleChange}
             />
-            <span
-              className="form__input-error"
-              id="description-input-error"
-            ></span>
+            <span className="form__input-error">{errors.password}</span>
           </label>
-          <button
-            className={`form__submit-button form__submit-button_type_profile`}
-          >
-            Войти
-          </button>
+          {isValid ? (
+            <>
+              {error ? (
+                <span className="form__button-error">{error}</span>
+              ) : (
+                <></>
+              )}
+              <button
+                className={`form__submit-button form__submit-button_active`}
+              >
+                Войти
+              </button>
+            </>
+          ) : (
+            <button className={`form__submit-button`}>Войти</button>
+          )}
         </fieldset>
       </PopupWithForm>
     </section>

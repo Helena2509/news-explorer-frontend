@@ -1,11 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './InfoTooltip.css';
-import { Link, useHistory } from 'react-router-dom';
 
 function InfoTooltip(props) {
   React.useEffect(() => {
     props.closeEscOverlay();
-  }, [props.isOpen]);
+  }, []);
 
   const openLogin = () => {
     props.closeAllPopups();

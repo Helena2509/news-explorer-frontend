@@ -63,11 +63,11 @@
 
 .popup__success_link {
   font-family: 'Inter', Arial, sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 22px;
-color: #2F71E5;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #2f71e5;
   cursor: pointer;
   text-decoration: none;
   position: absolute;

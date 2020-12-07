@@ -16,13 +16,29 @@ import Register from '../Register/Register';
 import InfoTooltip from '../InfoTooltip/InfoTooltip.js';
 
 function App() {
-  const [currentUser, setCurrentUser] = React.useState(null);
-  const [userData, setUserData] = React.useState({});
-  const [loggedIn, setLoggedIn] = React.useState(false);
-
   const location = useLocation();
-
   const history = useHistory();
+
+  const [currentUser, setCurrentUser] = React.useState(null);
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const [isPopupLoginOpen, setIsPopupLoginOpen] = React.useState(false);
+  const [isPopupRegisterOpen, setIsPopupRegisterOpen] = React.useState(false);
+  const [isPopupInfoTooltipOpen, setIsPopupInfoTooltipOpen] = React.useState(
+    false
+  );
+
+  const [foundArticles, setFoundArticles] = React.useState(
+    JSON.parse(localStorage.foundArticles) || []
+  );
+  const [savedArticles, setSavedArticles] = React.useState([]);
+
+  const [textSearch, setTextSearch] = React.useState(
+    localStorage.textSearch || ''
+  );
+
+  const [error, setError] = React.useState(false);
 
   const tokenCheck = () => {
     const jwt = localStorage.getItem('jwt');
@@ -33,7 +49,6 @@ function App() {
           if (res) {
             Promise.all([api.getUserInfo(jwt), api.getInitialArticles(jwt)])
               .then(([user, articles]) => {
-                console.log(user.user);
                 setCurrentUser(user.user);
                 setSavedArticles(articles);
               })
@@ -41,9 +56,6 @@ function App() {
                 return console.log(err);
               });
             setLoggedIn(true);
-            setUserData({
-              name: res.user.name,
-            });
             history.push('/');
           }
         })
@@ -54,6 +66,13 @@ function App() {
   React.useEffect(() => {
     tokenCheck();
   }, []);
+
+  function signOut() {
+    localStorage.removeItem('jwt');
+    setLoggedIn(false);
+    history.push('/');
+    setSavedArticles([]);
+  };
 
   function handleArticles(articles) {
     const isOwn = savedArticles
@@ -97,8 +116,8 @@ function App() {
           setSavedArticles(newArticles);
         })
         .catch((err) => console.log(err));
-    }
-  }
+    };
+  };
 
   const deleteArticles = (id) => {
     const jwt = localStorage.getItem('jwt');
@@ -111,23 +130,6 @@ function App() {
       .catch((err) => console.log(err));
   };
 
-  const [isPopupLoginOpen, setIsPopupLoginOpen] = React.useState(false);
-  const [isPopupRegisterOpen, setIsPopupRegisterOpen] = React.useState(false);
-  const [isPopupInfoTooltipOpen, setIsPopupInfoTooltipOpen] = React.useState(false);
-
-  const [foundArticles, setFoundArticles] = React.useState(
-    JSON.parse(localStorage.foundArticles) || []
-  );
-  const [savedArticles, setSavedArticles] = React.useState([]);
-
-  const [textSearch, setTextSearch] = React.useState(
-    localStorage.textSearch || ''
-  );
-
-  const [isLoading, setIsLoading] = React.useState(false);
-
-  const [error, setError] = React.useState(false);
-  
   function handleTextSearch(text) {
     setTextSearch(text);
     localStorage.textSearch = text;
@@ -142,43 +144,43 @@ function App() {
         setError(true);
         console.log(err);
       });
-  }
+  };
 
   function onChangeFoundArticles(articles) {
     setFoundArticles(articles);
     localStorage.foundArticles = JSON.stringify(articles);
-  }
+  };
 
   function handleIsPopupRegisterOpenClick() {
     setIsPopupRegisterOpen(!isPopupRegisterOpen);
-  }
+  };
 
   function handleisPopupInfoTooltipOpenOpenClick() {
     setIsPopupInfoTooltipOpen(!isPopupInfoTooltipOpen);
-  }
+  };
 
   function handleIsPopupLoginOpenClick() {
     setIsPopupLoginOpen(!isPopupLoginOpen);
-  }
+  };
 
   function closeAllPopups() {
     setIsPopupLoginOpen(false);
     setIsPopupRegisterOpen(false);
     setIsPopupInfoTooltipOpen(false);
-  }
+  };
 
   function closeAllPopupsEscOverlay() {
     function handleEscClose(evt) {
       if (evt.key === 'Escape') {
         closeAllPopups();
-      }
-    }
+      };
+    };
 
     function closeByClick(evt) {
       if (evt.target.classList.contains('popup__overlay-black')) {
         closeAllPopups();
       }
-    }
+    };
 
     document.addEventListener('keydown', handleEscClose);
     document.addEventListener('click', closeByClick);
@@ -187,7 +189,7 @@ function App() {
       document.removeEventListener('keydown', handleEscClose);
       document.removeEventListener('click', closeByClick);
     };
-  }
+  };
 
   return (
     <div className="page">
@@ -199,9 +201,9 @@ function App() {
             handleTextSearch={handleTextSearch}
             loggedIn={loggedIn}
             setLoggedIn={setLoggedIn}
-            userData={userData}
             tokenCheck={tokenCheck}
             setSavedArticles={setSavedArticles}
+            signOut={signOut}
           />
         ) : (
           <SavedNewsHeader
@@ -211,9 +213,9 @@ function App() {
             textSearch={textSearch}
             handleTextSearch={handleTextSearch}
             loggedIn={loggedIn}
-            userData={userData}
             tokenCheck={tokenCheck}
             setSavedArticles={setSavedArticles}
+            signOut={signOut}
           />
         )}
         <Switch>
@@ -252,13 +254,15 @@ function App() {
           closeEscOverlay={closeAllPopupsEscOverlay}
           title={`Регестрация`}
           isPopupInfoTooltipOpen={isPopupInfoTooltipOpen}
-          handleisPopupInfoTooltipOpenOpenClick={handleisPopupInfoTooltipOpenOpenClick}
+          handleisPopupInfoTooltipOpenOpenClick={
+            handleisPopupInfoTooltipOpenOpenClick
+          }
         />
         <InfoTooltip
-        isPopupInfoTooltipOpen={isPopupInfoTooltipOpen}
-        closeAllPopups={closeAllPopups}
-        closeEscOverlay={closeAllPopupsEscOverlay}
-        handleIsPopupLoginOpenClick={handleIsPopupLoginOpenClick}
+          isPopupInfoTooltipOpen={isPopupInfoTooltipOpen}
+          closeAllPopups={closeAllPopups}
+          closeEscOverlay={closeAllPopupsEscOverlay}
+          handleIsPopupLoginOpenClick={handleIsPopupLoginOpenClick}
         />
       </CurrentUserContext.Provider>
     </div>
