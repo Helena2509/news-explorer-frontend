@@ -24,6 +24,7 @@ const Login = (props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (!values.email || !values.password) {
+      setError('Пожалуйста, введите данные снова');
       return;
     }
     auth
@@ -89,11 +90,7 @@ const Login = (props) => {
           </label>
           {isValid ? (
             <>
-              {error ? (
-                <span className="form__button-error">{error}</span>
-              ) : (
-                <></>
-              )}
+              {<span className="form__button-error">{error}</span>}
               <button
                 className={`form__submit-button form__submit-button_active`}
               >

@@ -6,7 +6,6 @@ const dateFrom = transformDate(moment().format('L'));
 const dateTo = transformDate(moment().subtract(7, 'days').calendar());
 
 const getArticles = (key) => {
-  console.log(key);
   return fetch(`http://newsapi.org/v2/everything?q=${key}&from=${dateFrom}&to=${dateTo}&pageSize=100&apiKey=448b9fac67c1435aac1aaeaeba4f6e6e`, {
   })
     .then((res) => {

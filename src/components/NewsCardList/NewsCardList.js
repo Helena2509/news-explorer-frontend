@@ -43,6 +43,7 @@ function NewsCardList(props) {
                 url={articles.url}
                 publishedAt={articles.publishedAt}
                 handleArticles={props.handleArticles}
+                loggedIn={props.loggedIn}
               />
             ))
           : props.articles.map((articles, index) => (

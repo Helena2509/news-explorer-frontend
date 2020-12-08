@@ -18,7 +18,8 @@ function Main(props) {
 
   return (
     <main className="main">
-      {props.isLoading ? (
+      {localStorage.foundArticles ? 
+      props.isLoading ? (
         <Preloader isLoading={props.isLoading} />
       ) : foundNothing ? (
         <NotFound
@@ -42,8 +43,11 @@ function Main(props) {
             isOwn={props.isOwn}
             handleArticles={props.handleArticles}
             setIsOwn={props.setIsOwn}
+            loggedIn={props.loggedIn}
           />
         </div>
+      ) : (
+        <></>
       )}
     </main>
   );

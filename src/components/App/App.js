@@ -30,7 +30,7 @@ function App() {
   );
 
   const [foundArticles, setFoundArticles] = React.useState(
-    JSON.parse(localStorage.foundArticles) || []
+    localStorage.foundArticles ? JSON.parse(localStorage.foundArticles) : []
   );
   const [savedArticles, setSavedArticles] = React.useState([]);
 
@@ -227,6 +227,7 @@ function App() {
               textSearch={textSearch}
               handleArticles={handleArticles}
               error={error}
+              loggedIn={loggedIn}
             />
             <About />
           </Route>

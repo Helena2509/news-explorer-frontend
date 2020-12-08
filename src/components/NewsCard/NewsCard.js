@@ -43,10 +43,6 @@ function NewsCard(props) {
             <p className="card__key_header">{props.keyword}</p>
           </div>
         )}
-        <div className="card__delete_rede">
-          <p className="card__delete_rede-text">Убрать из сохранённых</p>
-        </div>
-
         <div className="card__text">
           <p className="card__date">{formatted}</p>
           <h3 className="card__title">{props.title}</h3>
@@ -56,17 +52,33 @@ function NewsCard(props) {
       </a>
       <div className="card__marker">
         {location.pathname === '/' ? (
-          <button
-            type="button"
-            className={cardButton}
-            onClick={handleIsOwn}
-          ></button>
+          <>
+            <button
+              type="button"
+              className={cardButton}
+              onClick={handleIsOwn}
+            ></button>
+            {props.loggedIn ? (
+              <></>
+            ) : (
+              <div className="card__delete_rede card__delete_rede_unlogged">
+                <p className="card__delete_rede-text">
+                  Войдите, чтобы сохранять статьи
+                </p>
+              </div>
+            )}
+          </>
         ) : (
-          <button
-            type="button"
-            className="card__delete"
-            onClick={deleteArticle}
-          ></button>
+          <>
+            <button
+              type="button"
+              className="card__delete"
+              onClick={deleteArticle}
+            ></button>
+            <div className="card__delete_rede">
+              <p className="card__delete_rede-text">Убрать из сохранённых</p>
+            </div>
+          </>
         )}
       </div>
     </div>

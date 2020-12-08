@@ -100,13 +100,11 @@ const Register = (props) => {
           </label>
           {isValid ? (
             <>
-              {error ? (
+              {
                 <span className="form__button-error form__button-error-register">
                   {error}
                 </span>
-              ) : (
-                <></>
-              )}
+              }
               <button
                 className={`form__submit-button form__submit-button-register form__submit-button_active`}
               >
